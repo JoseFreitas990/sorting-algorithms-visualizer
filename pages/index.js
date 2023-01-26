@@ -2,14 +2,25 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Graph from '../components/Graph';
 import Sidebar from '../components/Sidebar';
+import { Visualizer } from '../components';
 
 export default function Home() {
-  const [arraySize, setArraySize] = useState(25);
+  // Change for ZUSTAND or Context API eventually
+  const [array, setArray] = useState([]);
   const [algorithm, setAlgorithm] = useState('bubble-sort');
-  const [velocity, setVelocity] = useState('normal');
+  const [action, setAction] = useState('');
+  const [velocity, setVelocity] = useState(1);
+  const [size, setSize] = useState(25);
+
+  useEffect(() => {
+    setArray(
+      Array.from({ length: size }, () => Math.floor(Math.random() * 100 + 1))
+    );
+  }, [size]);
+
   return (
     <>
       <Head>
@@ -18,8 +29,20 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-screen p-3">
-        <Sidebar />
+      <main className="h-screen p-3 flex-row flex gap-4">
+        <Sidebar
+          array={array}
+          setArray={setArray}
+          algorithm={algorithm}
+          setAlgorithm={setAlgorithm}
+          action={action}
+          setAction={setAction}
+          size={size}
+          setSize={setSize}
+          setVelocity={setVelocity}
+          velocity={velocity}
+        />
+        <Visualizer array={array} algorithm={algorithm} size={size} />
       </main>
     </>
   );
