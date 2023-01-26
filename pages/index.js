@@ -6,14 +6,16 @@ import { useEffect, useState } from 'react';
 import Graph from '../components/Graph';
 import Sidebar from '../components/Sidebar';
 import { Visualizer } from '../components';
+import { algorithm as algo, speed } from '../constants';
 
 export default function Home() {
   // Change for ZUSTAND or Context API eventually
   const [array, setArray] = useState([]);
-  const [algorithm, setAlgorithm] = useState('bubble-sort');
+  const [algorithm, setAlgorithm] = useState(algo.bubbleSort);
   const [action, setAction] = useState('');
-  const [velocity, setVelocity] = useState(1);
+  const [velocity, setVelocity] = useState(speed.normal);
   const [size, setSize] = useState(25);
+  const [isSorting, setSorting] = useState(false);
 
   useEffect(() => {
     setArray(

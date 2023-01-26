@@ -11,12 +11,12 @@ const Visualizer = (props) => {
       <h1 className="text-3xl pb-3">Algorithm</h1>
 
       <div className="w-full ">
-        <div className="flex flex-row items-end w-full bg-slate-600 gap-[1.5px] ">
-          {array?.map((item) => {
+        <div className="flex flex-row items-end w-full bg-slate-600 gap-[1.5px] h-[370px] ">
+          {array?.map((item, i) => {
             return (
               <div
                 className="flex flex-col min-w-0 font- w-full items-center"
-                key=""
+                key={i}
               >
                 <span className="text-sm w">{item}</span>
                 <div
