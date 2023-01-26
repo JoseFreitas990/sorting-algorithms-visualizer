@@ -4,16 +4,12 @@ import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 import Graph from '../components/Graph';
+import Sidebar from '../components/Sidebar';
 
 export default function Home() {
-  const [randomArray, setRandomArray] = useState(
-    Array.from({ length: 50 }, () => Math.floor(Math.random() * 100))
-  );
-
-  const getNewArray = Array.from({ length: 50 }, () =>
-    Math.floor(Math.random() * 100)
-  );
-
+  const [arraySize, setArraySize] = useState(25);
+  const [algorithm, setAlgorithm] = useState('bubble-sort');
+  const [velocity, setVelocity] = useState('normal');
   return (
     <>
       <Head>
@@ -22,15 +18,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-[100vh] flex flex-col justify-center items-center">
-        <span className="text-3xl font-bold">Sorting Algorithms</span>
-        <div className="">
-          <button onClick={() => setRandomArray(getNewArray)}>New Array</button>
-
-          {/* <button onClick={() => bubbleSort()}>Bubble Sort</button> */}
-          <button onClick={() => console.log(randomArray)}>Check</button>
-        </div>
-        <Graph array={randomArray} />
+      <main className="h-screen p-3">
+        <Sidebar />
       </main>
     </>
   );
